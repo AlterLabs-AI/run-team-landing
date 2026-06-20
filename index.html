@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>[TEAM NAME] — Equipo de Aventura Extrema</title>
+  <title>[TEAM NAME] — Equipo de Aventura Extrema · Argentina</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet">
   <style>
+    /* ═══════════════════════════════════════
+       DESIGN SYSTEM — RUN TEAM
+       Tokens from DESIGN_SYSTEM_RUNNING.md
+    ═══════════════════════════════════════ */
     :root {
       --bg:           #F0EDE8;
       --bg-dark:      #0F0F0F;
@@ -16,28 +20,28 @@
       --ink:          #111111;
       --ink-faint:    #888880;
       --tape:         #1C6BFF;
-      --tape-muted:   rgba(28,107,255,0.15);
-      --tape-border:  rgba(28,107,255,0.4);
+      --tape-muted:   rgba(28,107,255,0.14);
+      --tape-border:  rgba(28,107,255,0.38);
       --text-light:   #F0EDE8;
-      --text-light-2: rgba(240,237,232,0.5);
-      --border:       rgba(17,17,17,0.1);
-      --border-md:    rgba(17,17,17,0.2);
-      --border-light: rgba(240,237,232,0.12);
+      --text-light-2: rgba(240,237,232,0.48);
+      --border:       rgba(17,17,17,0.09);
+      --border-md:    rgba(17,17,17,0.18);
+      --border-light: rgba(240,237,232,0.11);
       --font-display: 'Fragment Mono', monospace;
       --font-body:    'DM Sans', sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
       scroll-behavior: smooth;
       scrollbar-width: thin;
-      scrollbar-color: rgba(28,107,255,0.3) transparent;
+      scrollbar-color: var(--tape-border) transparent;
     }
 
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(28,107,255,0.4); border-radius: 0; }
+    ::-webkit-scrollbar-thumb { background: var(--tape-border); border-radius: 0; }
 
     body {
       background: var(--bg);
@@ -50,173 +54,115 @@
 
     ::selection { background: var(--tape); color: #fff; }
 
-    /* ── Layout ── */
+    :focus-visible {
+      outline: 2px solid var(--tape);
+      outline-offset: 3px;
+    }
+
     .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 28px;
     }
 
-    /* ── Type ── */
     .caption-label {
       font-family: var(--font-display);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ink-faint);
-      white-space: nowrap;
     }
 
-    /* ── Tape Label ── */
     .tape-label {
-      display: inline-flex;
-      align-items: center;
+      display: inline-block;
       background: var(--tape);
       color: #fff;
       font-family: var(--font-body);
-      font-size: 0.68rem;
+      font-size: 0.62rem;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      padding: 5px 12px;
+      padding: 5px 11px;
       border-radius: 0;
     }
 
-    .tape-label--angled {
-      transform: rotate(-1.5deg);
-      display: inline-block;
-    }
+    .tape-label--angled { transform: rotate(-1.5deg); }
 
-    /* ── Divider ── */
     .divider-coords {
       display: flex;
       align-items: center;
       gap: 20px;
-      padding: 40px 0;
+      padding: 44px 0;
     }
 
-    .divider-line {
-      flex: 1;
-      height: 1px;
-      background: var(--border-md);
-    }
-
+    .divider-line { flex: 1; height: 1px; background: var(--border-md); }
     .divider-coords--dark .divider-line { background: var(--border-light); }
     .divider-coords--dark .caption-label { color: var(--text-light-2); }
 
-    /* ── Stat Block ── */
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: clamp(3.5rem, 8vw, 6.5rem);
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-    }
-
-    .stat-unit {
-      font-family: var(--font-display);
-      font-size: clamp(1rem, 2vw, 1.4rem);
-      color: var(--tape);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      margin-top: 6px;
-    }
-
-    /* ── Buttons ── */
-    .btn-primary {
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: var(--tape);
-      color: #fff;
       font-family: var(--font-body);
-      font-size: 0.7rem;
+      font-size: 0.66rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      padding: 14px 28px;
-      border: none;
+      padding: 14px 26px;
       border-radius: 0;
       cursor: pointer;
-      transition: opacity 0.2s;
       text-decoration: none;
+      transition: opacity 0.16s, border-color 0.16s, color 0.16s;
     }
 
-    .btn-primary:hover { opacity: 0.82; }
+    .btn--primary  { background: var(--tape); color: #fff; border: none; }
+    .btn--primary:hover { opacity: 0.8; }
 
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: transparent;
-      color: var(--ink);
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 13px 27px;
-      border: 1px solid var(--border-md);
-      border-radius: 0;
-      cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-      text-decoration: none;
-    }
+    .btn--outline  { background: transparent; color: var(--ink); border: 1px solid var(--border-md); }
+    .btn--outline:hover { border-color: var(--tape); color: var(--tape); }
 
-    .btn-outline:hover { border-color: var(--tape); color: var(--tape); }
+    .btn--outline-light { background: transparent; color: var(--text-light); border: 1px solid rgba(240,237,232,0.2); }
+    .btn--outline-light:hover { border-color: var(--tape); color: var(--tape); }
 
-    .btn-outline--light {
-      color: var(--text-light);
-      border-color: rgba(240,237,232,0.25);
-    }
-
-    .btn-outline--light:hover { border-color: var(--tape); color: var(--tape); }
-
-    /* ── Dark Section ── */
-    .section-dark {
+    .section--dark {
       background: var(--bg-dark);
       color: var(--text-light);
       position: relative;
       overflow: hidden;
     }
 
-    .section-dark--tape-top::before {
+    .section--dark.tape-top::before {
       content: '';
-      display: block;
-      height: 3px;
-      background: var(--tape);
       position: absolute;
       top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--tape);
     }
 
-    .noise-overlay {
+    .noise {
       position: absolute;
       inset: 0;
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 200px;
       pointer-events: none;
     }
 
-    /* ══════════════════════════════════════
-       NAV
-    ══════════════════════════════════════ */
-    nav {
+    /* ── NAV ── */
+    #nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 20px 0;
-      transition: background 0.3s, backdrop-filter 0.3s;
+      padding: 18px 0;
+      transition: background 0.28s, border-color 0.28s;
     }
 
-    nav .container {
+    #nav.scrolled {
+      background: rgba(240,237,232,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-md);
+    }
+
+    #nav .container {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -224,8 +170,8 @@
 
     .nav-logo {
       font-family: var(--font-display);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ink);
       text-decoration: none;
@@ -238,142 +184,185 @@
     }
 
     .nav-links a {
-      font-size: 0.62rem;
+      font-size: 0.58rem;
       font-weight: 500;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--ink);
       text-decoration: none;
-      opacity: 0.5;
-      transition: opacity 0.2s;
+      opacity: 0.42;
+      transition: opacity 0.16s;
     }
 
     .nav-links a:hover { opacity: 1; }
 
-    @media (max-width: 620px) { .nav-links { display: none; } }
+    @media (max-width: 600px) { .nav-links { display: none; } }
 
-    /* ══════════════════════════════════════
-       HERO
-    ══════════════════════════════════════ */
+    /* ── HERO ── */
     #hero {
       min-height: 100svh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 160px 0 80px;
+      padding: 160px 0 72px;
     }
 
-    .hero-top {
-      margin-bottom: 16px;
+    .hero-eye {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
+      margin-bottom: 20px;
     }
 
     .hero-headline {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 9.5vw, 8.5rem);
+      font-size: clamp(2.8rem, 9.5vw, 8.5rem);
       font-weight: 400;
-      letter-spacing: -0.025em;
-      line-height: 0.93;
-      margin-bottom: 56px;
+      letter-spacing: -0.028em;
+      line-height: 0.92;
+      margin-bottom: 60px;
     }
 
-    .hero-headline .knockout {
+    .hero-headline .invert {
       display: inline;
       background: var(--ink);
       color: var(--bg);
-      padding: 0 6px 2px;
+      padding: 1px 6px 3px;
     }
 
-    .hero-bottom {
+    .hero-footer {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      gap: 48px;
+      gap: 40px;
       flex-wrap: wrap;
     }
 
-    .hero-descriptor p {
-      max-width: 380px;
-      font-size: 0.95rem;
+    .hero-body {
+      max-width: 360px;
+      font-size: 0.9rem;
       font-weight: 300;
-      line-height: 1.75;
       color: var(--ink-faint);
+      line-height: 1.78;
     }
 
     .hero-actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+      flex-shrink: 0;
     }
 
-    /* ══════════════════════════════════════
-       STATS
-    ══════════════════════════════════════ */
-    #stats {
-      border-top: 1px solid var(--border-md);
-      border-bottom: 1px solid var(--border-md);
+    /* ── DATA TICKER — riesgo estético ── */
+    #ticker {
+      background: var(--ink);
+      overflow: hidden;
+      padding: 11px 0;
     }
 
-    .stats-grid {
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      will-change: transform;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .ticker-track {
+        animation: ticker-scroll 60s linear infinite;
+      }
+    }
+
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .ticker-seg { display: inline-flex; align-items: center; flex-shrink: 0; }
+
+    .t-item {
+      font-family: var(--font-display);
+      font-size: 0.58rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: rgba(240,237,232,0.5);
+      padding: 0 36px 0 0;
+    }
+
+    .t-accent { color: var(--tape); }
+    .t-bright { color: var(--text-light); }
+
+    /* ── STATS ── */
+    #stats { border-bottom: 1px solid var(--border-md); }
+
+    .stats-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
     }
 
-    .stat-item {
-      padding: 56px 0 56px;
+    .stat-col {
+      padding: 52px 0;
       border-right: 1px solid var(--border-md);
     }
 
-    .stat-item:last-child { border-right: none; }
+    .stat-col:last-child { border-right: none; }
+    .stat-col + .stat-col { padding-left: 48px; }
 
-    .stat-item + .stat-item { padding-left: 48px; }
-
-    .stat-row {
+    .stat-num-row {
       display: flex;
       align-items: baseline;
-      gap: 8px;
+      gap: 7px;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7.5vw, 6rem);
+      letter-spacing: -0.03em;
+      line-height: 0.88;
+    }
+
+    .stat-unit {
+      font-family: var(--font-display);
+      font-size: clamp(0.85rem, 1.8vw, 1.25rem);
+      color: var(--tape);
+      line-height: 1;
+    }
+
+    .stat-desc {
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-top: 9px;
     }
 
     @media (max-width: 680px) {
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-      .stat-item {
-        border-right: none;
-        border-bottom: 1px solid var(--border-md);
-        padding: 36px 0;
-      }
-      .stat-item:last-child { border-bottom: none; }
-      .stat-item + .stat-item { padding-left: 0; }
+      .stats-row { grid-template-columns: 1fr; }
+      .stat-col { border-right: none; border-bottom: 1px solid var(--border-md); padding: 36px 0; }
+      .stat-col:last-child { border-bottom: none; }
+      .stat-col + .stat-col { padding-left: 0; }
     }
 
-    /* ══════════════════════════════════════
-       DIFERENCIADORES
-    ══════════════════════════════════════ */
-    #diferenciadores {
-      padding: 120px 0;
-    }
+    /* ── DIFERENCIADORES ── */
+    #diferenciadores { padding: 120px 0; }
 
-    .diff-header { margin-bottom: 48px; }
-
-    .diff-header .tape-label { margin-bottom: 28px; }
+    .section-eye { margin-bottom: 24px; }
 
     .section-headline {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-size: clamp(1.8rem, 4.8vw, 3.6rem);
       font-weight: 400;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.015em;
       line-height: 1.08;
     }
 
-    .diff-header p {
-      max-width: 500px;
-      font-size: 0.95rem;
-      line-height: 1.75;
+    .section-sub {
+      max-width: 480px;
+      font-size: 0.88rem;
+      font-weight: 300;
       color: var(--ink-faint);
-      margin-top: 20px;
+      line-height: 1.78;
+      margin-top: 18px;
     }
 
     .diff-table-wrap { overflow-x: auto; }
@@ -381,12 +370,12 @@
     .diff-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.9rem;
+      font-size: 0.86rem;
     }
 
     .diff-table th {
       font-family: var(--font-display);
-      font-size: 0.63rem;
+      font-size: 0.58rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       font-weight: 400;
@@ -396,10 +385,10 @@
       color: var(--ink-faint);
     }
 
-    .diff-table th.col-team { color: var(--tape); }
+    .diff-table th.th-team { color: var(--tape); }
 
     .diff-table td {
-      padding: 18px 24px 18px 0;
+      padding: 17px 24px 17px 0;
       border-bottom: 1px solid var(--border);
       vertical-align: top;
       font-weight: 300;
@@ -407,31 +396,20 @@
       color: var(--ink-faint);
     }
 
-    .diff-table td.col-team {
-      font-weight: 500;
-      color: var(--ink);
-    }
-
+    .diff-table td.td-team { font-weight: 500; color: var(--ink); }
     .diff-table tr:last-child td { border-bottom: none; }
 
-    /* ══════════════════════════════════════
-       EQUIPO
-    ══════════════════════════════════════ */
+    /* ── EQUIPO ── */
     #equipo {
       padding: 120px 0;
       background: var(--surface);
     }
 
-    .section-header {
-      margin-bottom: 48px;
-    }
-
-    .section-header .tape-label { margin-bottom: 24px; }
-
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 2px;
+      margin-top: 48px;
     }
 
     .team-card {
@@ -441,74 +419,71 @@
       padding: 28px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      transition: border-color 0.2s;
+      gap: 8px;
+      transition: border-color 0.16s;
     }
 
     .team-card:hover { border-color: var(--tape); }
 
     .team-avatar {
-      width: 44px;
-      height: 44px;
-      background: var(--surface);
+      width: 40px;
+      height: 40px;
       border: 1px solid var(--border-md);
       border-radius: 2px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-display);
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
+      font-size: 0.55rem;
+      letter-spacing: 0.06em;
       color: var(--ink-faint);
+      background: var(--surface);
       margin-bottom: 6px;
     }
 
     .team-name {
       font-family: var(--font-display);
-      font-size: 1rem;
+      font-size: 0.92rem;
       line-height: 1.2;
     }
 
     .team-role {
-      font-size: 0.7rem;
+      font-size: 0.66rem;
       font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ink-faint);
     }
 
-    .team-stats-row {
+    .team-stat-row {
       display: flex;
       gap: 20px;
-      margin-top: 6px;
-      padding-top: 16px;
+      margin-top: 8px;
+      padding-top: 14px;
       border-top: 1px solid var(--border);
     }
 
     .tstat-num {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: 1.02rem;
       display: block;
     }
 
     .tstat-lbl {
-      font-size: 0.58rem;
+      font-size: 0.54rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ink-faint);
     }
 
-    /* ══════════════════════════════════════
-       AVENTURAS
-    ══════════════════════════════════════ */
-    #aventuras {
-      padding: 120px 0;
-    }
+    /* ── AVENTURAS ── */
+    #aventuras { padding: 120px 0; }
 
-    .aventuras-grid {
+    .av-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2px;
+      margin-top: 48px;
     }
 
     .av-card {
@@ -518,44 +493,45 @@
       padding: 32px 28px 28px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       position: relative;
       overflow: hidden;
       min-height: 280px;
-      transition: border-color 0.2s;
+      transition: border-color 0.16s;
     }
 
     .av-card:hover { border-color: var(--tape); }
 
-    .av-num {
+    .av-ghost {
       font-family: var(--font-display);
       font-size: 5.5rem;
       line-height: 0.85;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.05em;
       color: rgba(17,17,17,0.055);
       position: absolute;
-      bottom: 16px;
-      right: 16px;
+      bottom: 12px;
+      right: 12px;
       pointer-events: none;
+      user-select: none;
     }
 
     .av-card h3 {
       font-family: var(--font-display);
-      font-size: 1.15rem;
-      line-height: 1.2;
+      font-size: 1.08rem;
+      line-height: 1.22;
       margin-top: 10px;
     }
 
     .av-card p {
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       color: var(--ink-faint);
-      line-height: 1.65;
-      max-width: 340px;
+      line-height: 1.68;
+      max-width: 320px;
     }
 
     .av-footer {
       margin-top: auto;
-      padding-top: 16px;
+      padding-top: 14px;
       border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -563,138 +539,76 @@
       gap: 12px;
     }
 
-    /* ══════════════════════════════════════
-       MODELO
-    ══════════════════════════════════════ */
-    #modelo {
-      padding: 120px 0;
-      background: var(--surface);
-    }
-
-    .modelo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2px;
-      margin-top: 48px;
-    }
-
-    .modelo-card {
-      background: var(--bg);
-      border: 1px solid var(--border-md);
-      border-radius: 2px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .modelo-card h3 {
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-    }
-
-    .modelo-card p {
-      font-size: 0.88rem;
-      color: var(--ink-faint);
-      line-height: 1.65;
-    }
-
-    .modelo-categories {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .cat-tag {
-      font-family: var(--font-display);
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-faint);
-      border: 1px solid var(--border-md);
-      padding: 3px 8px;
-      border-radius: 0;
-    }
-
-    /* ══════════════════════════════════════
-       CTA DARK
-    ══════════════════════════════════════ */
-    #cta {
-      padding: 160px 0;
-    }
+    /* ── CTA DARK ── */
+    #cta { padding: 160px 0; }
 
     .cta-inner {
       position: relative;
       z-index: 1;
-      max-width: 720px;
+      max-width: 680px;
     }
 
-    .cta-inner .tape-label { margin-bottom: 36px; }
+    .cta-inner .section-eye { margin-bottom: 32px; }
 
     .cta-headline {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 7rem);
+      font-size: clamp(2.8rem, 7.5vw, 6.5rem);
       font-weight: 400;
-      letter-spacing: -0.025em;
-      line-height: 0.93;
+      letter-spacing: -0.028em;
+      line-height: 0.92;
       color: var(--text-light);
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
-    .cta-inner p {
-      font-size: 0.95rem;
+    .cta-body {
+      font-size: 0.88rem;
       font-weight: 300;
       color: var(--text-light-2);
-      line-height: 1.75;
-      max-width: 440px;
+      line-height: 1.8;
+      max-width: 420px;
       margin-bottom: 44px;
     }
 
-    .cta-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .cta-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    /* ══════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════ */
+    /* ── FOOTER ── */
     footer {
       background: var(--bg-dark);
       border-top: 1px solid var(--border-light);
-      padding: 36px 0;
+      padding: 32px 0;
     }
 
     .footer-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
     .footer-logo {
       font-family: var(--font-display);
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--text-light-2);
+      color: rgba(240,237,232,0.38);
     }
 
-    .footer-caption {
+    .footer-tag {
       font-family: var(--font-display);
-      font-size: 0.6rem;
+      font-size: 0.54rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text-light-2);
-      opacity: 0.5;
+      color: rgba(240,237,232,0.2);
     }
   </style>
 </head>
 <body>
 
-  <!-- ── NAV ── -->
-  <nav id="nav">
+  <!-- NAV -->
+  <nav id="nav" role="navigation" aria-label="Navegación principal">
     <div class="container">
-      <a class="nav-logo" href="#">[TEAM NAME]</a>
+      <a class="nav-logo" href="#hero">[TEAM NAME]</a>
       <ul class="nav-links">
         <li><a href="#stats">Stats</a></li>
         <li><a href="#equipo">Equipo</a></li>
@@ -704,102 +618,121 @@
     </div>
   </nav>
 
-  <!-- ── HERO ── -->
-  <section id="hero">
+  <!-- HERO -->
+  <section id="hero" aria-labelledby="hero-h1">
     <div class="container">
-      <div class="hero-top">
+      <div class="hero-eye">
         <div class="tape-label tape-label--angled">[TEAM NAME]</div>
-        <span class="caption-label">Argentina &middot; 2025</span>
+        <span class="caption-label">Argentina · 2025</span>
       </div>
-      <h1 class="hero-headline">
+      <h1 class="hero-headline" id="hero-h1">
         No es un<br>
-        <span class="knockout">club.</span><br>
+        <span class="invert">club.</span><br>
         Es un equipo.
       </h1>
-      <div class="hero-bottom">
-        <div class="hero-descriptor">
-          <p>Cuatro personas. Aventuras extremas. Contenido que no existe en Argentina. El producto no es el running&nbsp;&mdash; es la narrativa de lo que pasa cuando empujás al límite y lo grabás.</p>
-        </div>
+      <div class="hero-footer">
+        <p class="hero-body">Cuatro personas. Aventuras extremas documentadas. Contenido que no existe en Argentina todavía. El producto no es el running — es la narrativa de lo que pasa cuando empujás al límite y lo grabás.</p>
         <div class="hero-actions">
-          <a href="#aventuras" class="btn-primary">Ver aventuras</a>
-          <a href="#cta" class="btn-outline">Sumarse</a>
+          <a href="#aventuras" class="btn btn--primary">Ver aventuras</a>
+          <a href="#cta" class="btn btn--outline">Sumarse</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── STATS ── -->
-  <section id="stats">
+  <!-- DATA TICKER -->
+  <div id="ticker" aria-hidden="true" role="presentation">
+    <div class="ticker-track">
+      <div class="ticker-seg">
+        <span class="t-item"><span class="t-accent">▶</span> <span class="t-bright">-32.8908°S 68.8272°O</span> · Cruce Los Andes · <span class="t-accent">280 km</span> · Elev +12.400m · Pace <span class="t-bright">6:24/km</span> · 4 días · sin asistencia</span>
+        <span class="t-item"><span class="t-accent">▶</span> The Speed Project · <span class="t-bright">Argentina 2025</span> · <span class="t-accent">600 km</span> · sin reglas · sin permiso · sin red</span>
+        <span class="t-item"><span class="t-accent">▶</span> <span class="t-bright">-41.1335°S 71.3103°O</span> · Patagonia Off-Script · <span class="t-accent">en curso 2026</span> · fin del mundo</span>
+        <span class="t-item"><span class="t-accent">▶</span> <span class="t-bright">3.200 km</span> documentados · <span class="t-accent">140 días</span> fuera de la ciudad · 5 integrantes · trayectoria real</span>
+        <span class="t-item"><span class="t-accent">▶</span> Trail → cultura → lifestyle mainstream · La ventana en Argentina está abierta</span>
+        <span class="t-item"><span class="t-accent">▶</span> <span class="t-bright">-34.6037°S 58.3816°O</span> · Buenos Aires · <span class="t-accent">Esto no es un run club de Palermo</span></span>
+      </div>
+      <div class="ticker-seg" aria-hidden="true">
+        <span class="t-item"><span class="t-accent">▶</span> <span class="t-bright">-32.8908°S 68.8272°O</span> · Cruce Los Andes · <span class="t-accent">280 km</span> · Elev +12.400m · Pace <span class="t-bright">6:24/km</span> · 4 días · sin asistencia</span>
+        <span class="t-item"><span class="t-accent">▶</span> The Speed Project · <span class="t-bright">Argentina 2025</span> · <span class="t-accent">600 km</span> · sin reglas · sin permiso · sin red</span>
+        <span class="t-item"><span class="t-accent">▶</span> <span class="t-bright">-41.1335°S 71.3103°O</span> · Patagonia Off-Script · <span class="t-accent">en curso 2026</span> · fin del mundo</span>
+        <span class="t-item"><span class="t-accent">▶</span> <span class="t-bright">3.200 km</span> documentados · <span class="t-accent">140 días</span> fuera de la ciudad · 5 integrantes · trayectoria real</span>
+        <span class="t-item"><span class="t-accent">▶</span> Trail → cultura → lifestyle mainstream · La ventana en Argentina está abierta</span>
+        <span class="t-item"><span class="t-accent">▶</span> <span class="t-bright">-34.6037°S 58.3816°O</span> · Buenos Aires · <span class="t-accent">Esto no es un run club de Palermo</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section id="stats" aria-label="Estadísticas del equipo">
     <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-row">
-            <span class="stat-number" data-target="3200">0</span>
+      <div class="stats-row">
+        <div class="stat-col">
+          <div class="stat-num-row">
+            <span class="stat-num" data-target="3200">0</span>
             <span class="stat-unit">km</span>
           </div>
-          <p class="stat-label">documentados en campo</p>
+          <p class="stat-desc">documentados en campo</p>
         </div>
-        <div class="stat-item">
-          <div class="stat-row">
-            <span class="stat-number" data-target="140">0</span>
+        <div class="stat-col">
+          <div class="stat-num-row">
+            <span class="stat-num" data-target="140">0</span>
             <span class="stat-unit">días</span>
           </div>
-          <p class="stat-label">fuera de la ciudad</p>
+          <p class="stat-desc">fuera de la ciudad</p>
         </div>
-        <div class="stat-item">
-          <div class="stat-row">
-            <span class="stat-number" data-target="5">0</span>
-            <span class="stat-unit">&mdash;</span>
+        <div class="stat-col">
+          <div class="stat-num-row">
+            <span class="stat-num" data-target="5">0</span>
           </div>
-          <p class="stat-label">integrantes, trayectoria real</p>
+          <p class="stat-desc">integrantes, trayectoria real</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── DIFERENCIADORES ── -->
-  <section id="diferenciadores">
+  <!-- DIFERENCIADORES -->
+  <section id="diferenciadores" aria-labelledby="diff-h">
     <div class="container">
-      <div class="diff-header">
+      <div class="section-eye">
         <div class="tape-label">Diferencia</div>
-        <h2 class="section-headline" style="margin-top:28px;">
-          Esto no es<br>lo de siempre.
-        </h2>
-        <p>El run club ya existe. Ya lo hacen todos. Las marcas lo saben y están buscando otra cosa&nbsp;&mdash; narrativas reales de esfuerzo y aventura que resuenen mucho más allá del deporte.</p>
       </div>
+      <h2 class="section-headline" id="diff-h">
+        Esto no es<br>lo de siempre.
+      </h2>
+      <p class="section-sub">El run club ya existe. Ya lo hacen todos. Las marcas lo saben y están buscando otra cosa — narrativas reales de esfuerzo y aventura que resuenen mucho más allá del deporte.</p>
       <div class="divider-coords">
         <div class="divider-line"></div>
-        <span class="caption-label">-32.8908&deg;&nbsp;S, -68.8272&deg;&nbsp;O &middot; Mendoza</span>
+        <span class="caption-label">-32.8908° S, -68.8272° O · Mendoza</span>
         <div class="divider-line"></div>
       </div>
       <div class="diff-table-wrap">
         <table class="diff-table">
           <thead>
             <tr>
-              <th>Run Club</th>
-              <th class="col-team">[TEAM NAME]</th>
+              <th scope="col">Run Club</th>
+              <th scope="col" class="th-team">[TEAM NAME]</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Evento masivo, público, abierto</td>
-              <td class="col-team">Equipo privado. Identidad definida.</td>
+              <td>Evento masivo, público, abierto a cualquiera</td>
+              <td class="td-team">Equipo privado. Identidad definida.</td>
             </tr>
             <tr>
               <td>Cantidad de participantes</td>
-              <td class="col-team">Calidad de personas y contenido</td>
+              <td class="td-team">Calidad de personas y contenido</td>
             </tr>
             <tr>
-              <td>AM + café + playlist</td>
-              <td class="col-team">Aventuras extremas documentadas</td>
+              <td>AM, café, playlist de Spotify</td>
+              <td class="td-team">Aventuras extremas documentadas</td>
             </tr>
             <tr>
               <td>Urbano, predecible, repetible</td>
-              <td class="col-team">Fuera de la ciudad, fuera de lo conocido</td>
+              <td class="td-team">Fuera de la ciudad, fuera de lo conocido</td>
             </tr>
             <tr>
               <td>Sponsoreo por volumen de asistentes</td>
-              <td class="col-team">Sponsoreo por identidad y narrativa</td>
+              <td class="td-team">Sponsoreo por identidad y narrativa auténtica</td>
             </tr>
           </tbody>
         </table>
@@ -807,232 +740,170 @@
     </div>
   </section>
 
-  <!-- ── EQUIPO ── -->
-  <section id="equipo">
+  <!-- EQUIPO -->
+  <section id="equipo" aria-labelledby="equipo-h">
     <div class="container">
-      <div class="section-header">
+      <div class="section-eye">
         <div class="tape-label">Equipo</div>
-        <h2 class="section-headline" style="margin-top:24px;">
-          Personas reales.<br>Trayectoria real.
-        </h2>
       </div>
+      <h2 class="section-headline" id="equipo-h" style="margin-top:24px;">
+        Personas reales.<br>Trayectoria real.
+      </h2>
+      <p class="section-sub">Todos con identidad runner consolidada, presencia en redes, y trayectoria demostrable. No figuras genéricas de fitness.</p>
       <div class="team-grid">
-        <div class="team-card">
+        <article class="team-card">
           <div class="team-avatar">I.G.</div>
           <div class="team-name">Integrante 01</div>
-          <div class="team-role">Trail &middot; Ultra &middot; Contenido</div>
-          <div class="team-stats-row">
-            <div>
-              <span class="tstat-num">800+</span>
-              <span class="tstat-lbl">km trail</span>
-            </div>
-            <div>
-              <span class="tstat-num">6</span>
-              <span class="tstat-lbl">ultras</span>
-            </div>
+          <div class="team-role">Trail · Ultra · Contenido</div>
+          <div class="team-stat-row">
+            <div><span class="tstat-num">800+</span><span class="tstat-lbl">km trail</span></div>
+            <div><span class="tstat-num">6</span><span class="tstat-lbl">ultras</span></div>
           </div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar">--</div>
+        </article>
+        <article class="team-card">
+          <div class="team-avatar">—</div>
           <div class="team-name">Integrante 02</div>
-          <div class="team-role">Trail &middot; Fotografía</div>
-          <div class="team-stats-row">
-            <div>
-              <span class="tstat-num">600+</span>
-              <span class="tstat-lbl">km trail</span>
-            </div>
-            <div>
-              <span class="tstat-num">4</span>
-              <span class="tstat-lbl">ultras</span>
-            </div>
+          <div class="team-role">Trail · Fotografía</div>
+          <div class="team-stat-row">
+            <div><span class="tstat-num">600+</span><span class="tstat-lbl">km trail</span></div>
+            <div><span class="tstat-num">4</span><span class="tstat-lbl">ultras</span></div>
           </div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar">--</div>
+        </article>
+        <article class="team-card">
+          <div class="team-avatar">—</div>
           <div class="team-name">Integrante 03</div>
-          <div class="team-role">Road &middot; Producción</div>
-          <div class="team-stats-row">
-            <div>
-              <span class="tstat-num">12k+</span>
-              <span class="tstat-lbl">seguidores</span>
-            </div>
-            <div>
-              <span class="tstat-num">8</span>
-              <span class="tstat-lbl">maratones</span>
-            </div>
+          <div class="team-role">Road · Producción</div>
+          <div class="team-stat-row">
+            <div><span class="tstat-num">12k+</span><span class="tstat-lbl">seguidores</span></div>
+            <div><span class="tstat-num">8</span><span class="tstat-lbl">maratones</span></div>
           </div>
-        </div>
-        <div class="team-card">
-          <div class="team-avatar">--</div>
+        </article>
+        <article class="team-card">
+          <div class="team-avatar">—</div>
           <div class="team-name">Integrante 04</div>
-          <div class="team-role">Trail &middot; Estrategia</div>
-          <div class="team-stats-row">
-            <div>
-              <span class="tstat-num">700+</span>
-              <span class="tstat-lbl">km trail</span>
-            </div>
-            <div>
-              <span class="tstat-num">5</span>
-              <span class="tstat-lbl">ultras</span>
-            </div>
+          <div class="team-role">Trail · Estrategia</div>
+          <div class="team-stat-row">
+            <div><span class="tstat-num">700+</span><span class="tstat-lbl">km trail</span></div>
+            <div><span class="tstat-num">5</span><span class="tstat-lbl">ultras</span></div>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ── AVENTURAS ── -->
-  <section id="aventuras">
+  <!-- AVENTURAS -->
+  <section id="aventuras" aria-labelledby="aventuras-h">
     <div class="container">
-      <div class="section-header">
+      <div class="section-eye">
         <div class="tape-label">Aventuras</div>
-        <h2 class="section-headline" style="margin-top:24px;">
-          Contenido que<br>no se inventa.
-        </h2>
       </div>
-      <div class="aventuras-grid">
-        <div class="av-card">
-          <div class="tape-label tape-label--angled">Acci&oacute;n 01</div>
+      <h2 class="section-headline" id="aventuras-h" style="margin-top:24px;">
+        Contenido que<br>no se inventa.
+      </h2>
+      <p class="section-sub">No hay foto de archivo. Todo lo que sale de este equipo es producido en campo — en la montaña, en el asfalto, en el momento.</p>
+      <div class="av-grid">
+        <article class="av-card">
+          <div class="tape-label tape-label--angled">Acción 01</div>
           <h3>Cruce de los Andes<br>sin asistencia</h3>
-          <p>280 km. Cordillera de los Andes. Sin guía, sin crew, sin excusas. Documentado en tiempo real desde el primer paso hasta el último.</p>
+          <p>280 km. Sin guía, sin crew, sin excusas. Documentado en tiempo real desde el primer paso hasta el último.</p>
           <div class="av-footer">
-            <span class="caption-label">Mendoza &middot; Julio 2025</span>
+            <span class="caption-label">Mendoza · Julio 2025</span>
             <span class="caption-label">280 km</span>
           </div>
-          <div class="av-num">01</div>
-        </div>
-        <div class="av-card">
-          <div class="tape-label tape-label--angled">Acci&oacute;n 02</div>
+          <div class="av-ghost" aria-hidden="true">01</div>
+        </article>
+        <article class="av-card">
+          <div class="tape-label tape-label--angled">Acción 02</div>
           <h3>Formato TSP<br>Argentina</h3>
-          <p>Sin reglas. Sin permiso. Un relay de 600 km de punta a punta. Equipo completo, marcas, cámaras, asfalto. Lo que no existe en el país.</p>
+          <p>Sin reglas. Sin permiso. Un relay de 600 km de punta a punta. Lo que no existe en el país, creado desde adentro.</p>
           <div class="av-footer">
-            <span class="caption-label">Argentina &middot; 2025</span>
+            <span class="caption-label">Argentina · 2025</span>
             <span class="caption-label">600 km</span>
           </div>
-          <div class="av-num">02</div>
-        </div>
-        <div class="av-card">
-          <div class="tape-label tape-label--angled">Acci&oacute;n 03</div>
+          <div class="av-ghost" aria-hidden="true">02</div>
+        </article>
+        <article class="av-card">
+          <div class="tape-label tape-label--angled">Acción 03</div>
           <h3>Patagonia<br>Off-Script</h3>
-          <p>Una semana en el fin del mundo. Entrenamiento, vínculo, producción de contenido. Como lo que Satisfy hace en Wyoming — pero en Argentina.</p>
+          <p>Una semana en el fin del mundo. Entrenamiento, vínculo, producción. Como Satisfy en Wyoming — en Argentina.</p>
           <div class="av-footer">
-            <span class="caption-label">Patagonia &middot; 2026</span>
+            <span class="caption-label">Patagonia · 2026</span>
             <span class="caption-label">En curso</span>
           </div>
-          <div class="av-num">03</div>
-        </div>
+          <div class="av-ghost" aria-hidden="true">03</div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ── MODELO ── -->
-  <section id="modelo">
-    <div class="container">
-      <div class="section-header">
-        <div class="tape-label">Modelo</div>
-        <h2 class="section-headline" style="margin-top:24px;">
-          Para marcas<br>que entienden.
-        </h2>
-      </div>
-      <div class="modelo-grid">
-        <div class="modelo-card">
-          <h3>Sponsoreo de equipo</h3>
-          <p>No logos en remeras. Narrativa de aventura real integrada al contenido. Audiencia que ya sabe de qué se trata.</p>
-          <div class="modelo-categories">
-            <span class="cat-tag">Nutrici&oacute;n</span>
-            <span class="cat-tag">Wearables</span>
-            <span class="cat-tag">Outdoors</span>
-            <span class="cat-tag">Viajes</span>
-            <span class="cat-tag">Bebidas</span>
-            <span class="cat-tag">Autos</span>
-          </div>
-        </div>
-        <div class="modelo-card">
-          <h3>Merch de equipo</h3>
-          <p>Identidad propia, no merchandise genérico. Quien lo usa se identifica con lo que el equipo representa. Validación de comunidad.</p>
-        </div>
-        <div class="modelo-card">
-          <h3>Contenido original</h3>
-          <p>Producción profesional de aventuras extremas. Material que las marcas no pueden generar solas — porque requiere atletas reales con trayectoria.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CTA DARK ── -->
-  <section id="cta" class="section-dark section-dark--tape-top">
-    <div class="noise-overlay"></div>
+  <!-- CTA DARK -->
+  <section id="cta" class="section--dark tape-top" aria-labelledby="cta-h">
+    <div class="noise" aria-hidden="true"></div>
     <div class="container">
       <div class="cta-inner">
-        <div class="tape-label">Marcas &middot; Atletas &middot; Prensa</div>
-        <h2 class="cta-headline">
-          &iquest;Sos la<br>marca que<br>falta?
+        <div class="section-eye">
+          <div class="tape-label">Marcas · Atletas · Prensa</div>
+        </div>
+        <h2 class="cta-headline" id="cta-h">
+          ¿Sos la<br>marca que<br>falta?
         </h2>
-        <p>No vendemos alcance. Vendemos narrativa de aventura real con una audiencia que ya entiende de qué se trata. Si eso te interesa, escribinos.</p>
+        <p class="cta-body">No vendemos logos en remeras ni spots en eventos masivos. Vendemos narrativa de aventura real con una audiencia que ya entiende de qué se trata. Si eso te interesa, escribinos.</p>
         <div class="cta-actions">
-          <a href="mailto:hola@teamname.com" class="btn-primary">Escribinos</a>
-          <a href="#diferenciadores" class="btn-outline btn-outline--light">Ver la diferencia</a>
+          <a href="mailto:hola@teamname.com" class="btn btn--primary">Escribinos</a>
+          <a href="#diferenciadores" class="btn btn--outline-light">Ver la diferencia</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── FOOTER ── -->
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <span class="footer-logo">[TEAM NAME] &middot; Argentina &middot; 2025</span>
-        <span class="footer-caption">Raw. Extremo. Sin permiso.</span>
+        <span class="footer-logo">[TEAM NAME] · Argentina · 2025</span>
+        <span class="footer-tag">Raw. Extremo. Sin permiso.</span>
       </div>
     </div>
   </footer>
 
   <script>
-    // Count-up on scroll
-    const counters = document.querySelectorAll('.stat-number[data-target]');
-
-    function animateCounter(el) {
-      const target = parseInt(el.dataset.target, 10);
-      const duration = 1100;
-      const start = performance.now();
-      function tick(now) {
-        const t = Math.min((now - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - t, 3);
-        const val = Math.floor(ease * target);
-        el.textContent = val >= 1000
-          ? (val / 1000).toFixed(1).replace('.', ',') + 'k'
-          : val;
-        if (t < 1) requestAnimationFrame(tick);
-        else el.textContent = target >= 1000
-          ? (target / 1000).toFixed(1).replace('.', ',') + 'k'
-          : target;
+    (function () {
+      var nav = document.getElementById('nav');
+      var hero = document.getElementById('hero');
+      var active = false;
+      function update() {
+        var past = window.scrollY > hero.offsetHeight * 0.62;
+        if (past && !active)  { nav.classList.add('scrolled');    active = true;  }
+        else if (!past && active) { nav.classList.remove('scrolled'); active = false; }
       }
-      requestAnimationFrame(tick);
-    }
+      window.addEventListener('scroll', update, { passive: true });
+    }());
 
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          animateCounter(e.target);
-          io.unobserve(e.target);
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var counters = document.querySelectorAll('.stat-num[data-target]');
+      function run(el) {
+        var target = parseInt(el.dataset.target, 10);
+        if (reduced) { el.textContent = target.toLocaleString('es-AR'); return; }
+        var dur = 1050, t0 = performance.now();
+        function tick(now) {
+          var p = Math.min((now - t0) / dur, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.floor(e * target).toLocaleString('es-AR');
+          if (p < 1) requestAnimationFrame(tick);
+          else el.textContent = target.toLocaleString('es-AR');
         }
-      });
-    }, { threshold: 0.4 });
-
-    counters.forEach(c => io.observe(c));
-
-    // Nav glass on scroll
-    const nav = document.getElementById('nav');
-    const hero = document.getElementById('hero');
-
-    function updateNav() {
-      const scrolled = window.scrollY > hero.offsetHeight * 0.6;
-      nav.style.background = scrolled ? 'rgba(240,237,232,0.88)' : '';
-      nav.style.backdropFilter = scrolled ? 'blur(10px)' : '';
-      nav.style.borderBottom = scrolled ? '1px solid rgba(17,17,17,0.08)' : '';
-    }
-
-    window.addEventListener('scroll', updateNav, { passive: true });
+        requestAnimationFrame(tick);
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          run(entry.target);
+          io.unobserve(entry.target);
+        });
+      }, { threshold: 0.45 });
+      counters.forEach(function (c) { io.observe(c); });
+    }());
   </script>
 </body>
 </html>
