@@ -55,7 +55,7 @@
     ::selection { background: var(--tape); color: #fff; }
     :focus-visible { outline: 2px solid var(--tape); outline-offset: 3px; }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 28px); }
 
     .caption-label {
       font-family: var(--font-display);
@@ -230,7 +230,7 @@
     .ticker-track { display: flex; white-space: nowrap; will-change: transform; }
 
     @media (prefers-reduced-motion: no-preference) {
-      .ticker-track { animation: ticker-scroll 60s linear infinite; }
+      .ticker-track { animation: ticker-scroll 28s linear infinite; }
     }
 
     @keyframes ticker-scroll {
@@ -255,12 +255,12 @@
     /* BANDERA ARGENTINA */
     #bandera { display: flex; flex-direction: column; width: 100%; }
 
-    .flag-bar { width: 100%; height: 80px; }
+    .flag-bar { width: 100%; height: clamp(46px, 8vw, 80px); }
     .flag-bar--celeste { background: #74ACDF; }
     .flag-bar--white   { background: #FFFFFF; }
 
     /* QUÉ SOMOS */
-    #que-somos { padding: 120px 0; }
+    #que-somos { padding: clamp(72px, 13vw, 120px) 0; }
 
     .section-eye { margin-bottom: 24px; }
 
@@ -312,7 +312,7 @@
     .diff-table tr:last-child td { border-bottom: none; }
 
     /* QUIÉNES — team cards full image */
-    #quienes { padding: 120px 0; background: var(--bg-alt); }
+    #quienes { padding: clamp(72px, 13vw, 120px) 0; background: var(--bg-alt); }
 
     .team-grid {
       display: grid;
@@ -409,7 +409,7 @@
     }
 
     /* QUÉ HACEMOS — campo / proyectos con imagen */
-    #que-hacemos { padding: 120px 0; }
+    #que-hacemos { padding: clamp(72px, 13vw, 120px) 0; }
 
     .av-grid {
       display: grid;
@@ -423,7 +423,17 @@
       overflow: hidden;
       min-height: 420px;
       background: var(--bg-dark);
+      cursor: pointer;
+      border: 0;
+      padding: 0;
+      width: 100%;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+      display: block;
     }
+
+    .av-card:focus-visible { outline: 2px solid var(--tape); outline-offset: -2px; }
 
     .av-bg {
       position: absolute;
@@ -435,7 +445,36 @@
       transition: transform 0.5s ease;
     }
 
-    .av-card:hover .av-bg { transform: scale(1.04); }
+    .av-card:hover .av-bg,
+    .av-card:focus-visible .av-bg { transform: scale(1.04); }
+
+    .av-open {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--tape);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.54rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .av-card:hover .av-open,
+    .av-card:focus-visible .av-open { opacity: 1; transform: translateY(0); }
+
+    @media (hover: none) {
+      .av-open { opacity: 1; transform: none; }
+    }
 
     .av-card-overlay {
       position: absolute;
@@ -482,8 +521,121 @@
 
     .av-footer .caption-label { color: rgba(237,224,200,0.35); }
 
-    /* FILOSOFÍA (ex CTA) */
-    #filosofia { padding: 140px 0; }
+    /* MODAL PROYECTO */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(16px, 4vw, 40px);
+    }
+
+    .modal.is-open { display: flex; }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(28,26,22,0.82);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-dialog {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--bg-dark);
+      border: 1px solid var(--border-light);
+      border-top: 3px solid var(--tape);
+    }
+
+    .modal-media { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+    .modal-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .modal-media-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(transparent 40%, rgba(28,26,22,0.85) 100%);
+    }
+    .modal-tape {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+    }
+
+    .modal-content { padding: clamp(24px, 5vw, 40px); }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--bone);
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+
+    .modal-desc {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(237,224,200,0.7);
+      line-height: 1.85;
+    }
+
+    .modal-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .modal-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .modal-meta-num { font-family: var(--font-display); font-size: 1.15rem; color: var(--tape); }
+    .modal-meta-lbl { font-size: 0.54rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(237,224,200,0.4); }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(28,26,22,0.6);
+      border: 1px solid var(--border-light);
+      color: var(--bone);
+      font-size: 1.1rem;
+      font-family: var(--font-display);
+      cursor: pointer;
+      transition: background 0.16s, color 0.16s;
+    }
+
+    .modal-close:hover { background: var(--tape); color: #fff; }
+
+    /* FILOSOFÍA (ex CTA) — con imagen de fondo */
+    #filosofia { padding: clamp(96px, 16vw, 160px) 0; }
+
+    .filosofia-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.28;
+    }
+
+    #filosofia .filosofia-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(28,26,22,0.92) 0%, rgba(28,26,22,0.7) 55%, rgba(28,26,22,0.4) 100%);
+    }
 
     .filosofia-inner {
       position: relative;
@@ -722,17 +874,18 @@
       <p class="section-sub">Nada de esto está escrito en piedra. Está en la cabeza. Y eso es suficiente para empezar.</p>
       <div class="av-grid">
 
-        <article class="av-card">
+        <article class="av-card" role="button" tabindex="0" data-project="el-cruce" aria-label="Ver detalle: El Cruce de los Andes">
           <img
             src="https://images.unsplash.com/photo-1607613960015-f42a9da36204?auto=format&fit=crop&w=800&q=80"
             alt="El Cruce de los Andes"
             class="av-bg"
           >
+          <span class="av-open">Abrir +</span>
           <div class="av-card-overlay" aria-hidden="true"></div>
           <div class="av-card-body">
             <div class="tape-label tape-label--angled">CORDILLERA</div>
             <h3>El Cruce<br>de los Andes</h3>
-            <p>De Mendoza a Chile. Sin guía, sin crew, sin red. Cordillera de lado a lado. Documentado en tiempo real desde el primer paso hasta el último.</p>
+            <p>De Mendoza a Chile. Sin guía, sin crew, sin red. Cordillera de lado a lado.</p>
             <div class="av-footer">
               <span class="caption-label">Mendoza · en idea</span>
               <span class="caption-label">~280 km</span>
@@ -740,17 +893,18 @@
           </div>
         </article>
 
-        <article class="av-card">
+        <article class="av-card" role="button" tabindex="0" data-project="tsp" aria-label="Ver detalle: The Speed Project Argentina">
           <img
             src="https://images.unsplash.com/photo-1591770173619-992e80c78330?auto=format&fit=crop&w=800&q=80"
             alt="The Speed Project Argentina"
             class="av-bg"
           >
+          <span class="av-open">Abrir +</span>
           <div class="av-card-overlay" aria-hidden="true"></div>
           <div class="av-card-body">
             <div class="tape-label tape-label--angled">OUTLAW</div>
             <h3>The Speed Project<br>Argentina</h3>
-            <p>Sin reglas. Sin permiso. Un relay de punta a punta del país. Lo que no existe acá, creado por nosotros.</p>
+            <p>Sin reglas. Sin permiso. Un relay de punta a punta del país.</p>
             <div class="av-footer">
               <span class="caption-label">Argentina · en idea</span>
               <span class="caption-label">~600 km</span>
@@ -758,17 +912,18 @@
           </div>
         </article>
 
-        <article class="av-card">
+        <article class="av-card" role="button" tabindex="0" data-project="patagonia" aria-label="Ver detalle: Patagonia Off-Script">
           <img
             src="https://images.unsplash.com/photo-1494783329112-4a6795291178?auto=format&fit=crop&w=800&q=80"
             alt="Patagonia Off-Script"
             class="av-bg"
           >
+          <span class="av-open">Abrir +</span>
           <div class="av-card-overlay" aria-hidden="true"></div>
           <div class="av-card-body">
             <div class="tape-label tape-label--angled">FIN DEL MUNDO</div>
             <h3>Patagonia<br>Off-Script</h3>
-            <p>Sin agenda. Sin ruta definida. Una semana donde termina el mapa. Solo correr, grabar, y entender qué somos cuando no hay señal.</p>
+            <p>Sin agenda. Sin ruta definida. Una semana donde termina el mapa.</p>
             <div class="av-footer">
               <span class="caption-label">Patagonia · en idea</span>
               <span class="caption-label">por definir</span>
@@ -782,6 +937,12 @@
 
   <!-- FILOSOFÍA -->
   <section id="filosofia" class="section--dark tape-top" aria-labelledby="filosofia-h">
+    <img
+      src="https://images.unsplash.com/photo-1504025468847-0e438279542c?auto=format&fit=crop&w=1400&q=80"
+      alt="Corredor solitario en la montaña"
+      class="filosofia-bg"
+    >
+    <div class="filosofia-overlay" aria-hidden="true"></div>
     <div class="noise" aria-hidden="true"></div>
     <div class="container">
       <div class="filosofia-inner">
@@ -796,6 +957,37 @@
       </div>
     </div>
   </section>
+
+  <!-- MODAL PROYECTO -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog">
+      <button type="button" class="modal-close" data-close aria-label="Cerrar">✕</button>
+      <div class="modal-media">
+        <img id="modal-img" src="" alt="">
+        <div class="modal-media-overlay" aria-hidden="true"></div>
+        <div class="tape-label tape-label--angled modal-tape" id="modal-tape"></div>
+      </div>
+      <div class="modal-content">
+        <h2 class="modal-title" id="modal-title"></h2>
+        <p class="modal-desc" id="modal-desc"></p>
+        <div class="modal-meta">
+          <div class="modal-meta-item">
+            <span class="modal-meta-num" id="modal-meta1-num"></span>
+            <span class="modal-meta-lbl" id="modal-meta1-lbl"></span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-num" id="modal-meta2-num"></span>
+            <span class="modal-meta-lbl" id="modal-meta2-lbl"></span>
+          </div>
+          <div class="modal-meta-item">
+            <span class="modal-meta-num" id="modal-meta3-num"></span>
+            <span class="modal-meta-lbl" id="modal-meta3-lbl"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="container">
@@ -817,6 +1009,83 @@
         else if (!past && active) { nav.classList.add('nav--over-image'); nav.classList.remove('scrolled'); active = false; }
       }
       window.addEventListener('scroll', update, { passive: true });
+    }());
+
+    // Modal de proyectos
+    (function () {
+      var PROJECTS = {
+        'el-cruce': {
+          tape: 'CORDILLERA',
+          title: 'El Cruce de los Andes',
+          img: 'https://images.unsplash.com/photo-1607613960015-f42a9da36204?auto=format&fit=crop&w=1200&q=80',
+          desc: 'Cruzar los Andes a pie, sin asistencia. De Mendoza al lado chileno, por pasos de altura que casi nadie corre. Cuatro días de viento, roca y nieve tardía, cargando lo nuestro. No es una carrera contra el reloj — es una travesía contra el terreno, documentada paso a paso. La idea es simple y enorme: entrar por un lado de la cordillera, salir por el otro, con la cámara prendida todo el tiempo.',
+          meta: [['~280', 'kilómetros'], ['+12.4k', 'metros de elevación'], ['4', 'días sin asistencia']]
+        },
+        'tsp': {
+          tape: 'OUTLAW',
+          title: 'The Speed Project Argentina',
+          img: 'https://images.unsplash.com/photo-1591770173619-992e80c78330?auto=format&fit=crop&w=1200&q=80',
+          desc: 'The Speed Project no tiene web, no tiene reglas y no pide permiso. Un relay de punta a punta, sin ruta marcada, sin asistencia oficial. Lo que en Estados Unidos va de Los Ángeles a Las Vegas, en Argentina todavía no existe. Queremos ser los primeros en trazarlo acá: elegir dos puntos lejos en el mapa, armar el equipo, y correr hasta unirlos. Sin avisar.',
+          meta: [['~600', 'kilómetros'], ['relay', 'sin crew oficial'], ['0', 'reglas']]
+        },
+        'patagonia': {
+          tape: 'FIN DEL MUNDO',
+          title: 'Patagonia Off-Script',
+          img: 'https://images.unsplash.com/photo-1494783329112-4a6795291178?auto=format&fit=crop&w=1200&q=80',
+          desc: 'Sin agenda, sin ruta definida, sin saber bien cuánto vamos a correr cada día. Una semana donde el mapa se vuelve sugerencia. Patagonia es el lugar donde la señal se corta y las decisiones se toman en el momento. Vamos a entrar con lo puesto, dejar que el terreno decida, y volver con la prueba de que todavía quedan lugares sin guion.',
+          meta: [['7', 'días en ruta'], ['s/d', 'distancia abierta'], ['0', 'señal']]
+        }
+      };
+
+      var modal = document.getElementById('modal');
+      var imgEl = document.getElementById('modal-img');
+      var tapeEl = document.getElementById('modal-tape');
+      var titleEl = document.getElementById('modal-title');
+      var descEl = document.getElementById('modal-desc');
+      var metaNum = [document.getElementById('modal-meta1-num'), document.getElementById('modal-meta2-num'), document.getElementById('modal-meta3-num')];
+      var metaLbl = [document.getElementById('modal-meta1-lbl'), document.getElementById('modal-meta2-lbl'), document.getElementById('modal-meta3-lbl')];
+      var lastFocus = null;
+
+      function open(key) {
+        var p = PROJECTS[key];
+        if (!p) return;
+        imgEl.src = p.img;
+        imgEl.alt = p.title;
+        tapeEl.textContent = p.tape;
+        titleEl.textContent = p.title;
+        descEl.textContent = p.desc;
+        for (var i = 0; i < 3; i++) {
+          metaNum[i].textContent = p.meta[i][0];
+          metaLbl[i].textContent = p.meta[i][1];
+        }
+        lastFocus = document.activeElement;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        modal.querySelector('.modal-close').focus();
+      }
+
+      function close() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      }
+
+      document.querySelectorAll('.av-card').forEach(function (card) {
+        card.addEventListener('click', function () { open(card.getAttribute('data-project')); });
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(card.getAttribute('data-project')); }
+        });
+      });
+
+      modal.querySelectorAll('[data-close]').forEach(function (el) {
+        el.addEventListener('click', close);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+      });
     }());
   </script>
 </body>
